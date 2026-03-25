@@ -12,6 +12,7 @@ The application is built using **HTML, CSS, and vanilla JavaScript**, focusing o
 
 ---
 
+* Demo Link🔗: https://safar-mehfil.netlify.app/
 ## 🎯 Objectives
 
 * Provide a visually engaging platform for discovering global travel destinations
