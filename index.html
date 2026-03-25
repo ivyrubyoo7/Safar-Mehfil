@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safar Mehfil — Discover the World</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker" id="progress-tracker">
+  <div class="progress-tracker-title">Places Visited</div>
+  <div class="progress-tracker-count">0</div>
+  <div class="progress-tracker-label">of 12 destinations</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar transparent" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <div class="logo-icon">✈</div>
+    Safar Mehfil
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link active">Home</a></li>
+    <li><a href="explore.html" class="nav-link">Explore</a></li>
+    <li><a href="guidebook.html" class="nav-link">Guidebook</a></li>
+    <li><a href="memories.html" class="nav-link">Memories</a></li>
+    <li><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode">🌙</button>
+    <a href="auth.html" class="nav-btn-login">Login / Sign Up</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="explore.html" class="mobile-nav-link">Explore</a>
+  <a href="guidebook.html" class="mobile-nav-link">Guidebook</a>
+  <a href="memories.html" class="mobile-nav-link">Memories</a>
+  <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+  <div class="mobile-nav-actions">
+    <a href="auth.html" class="btn btn-primary" style="justify-content:center">Login / Sign Up</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Your World Awaits
+    </div>
+    <h1 class="hero-title">Wander Far,<br><em>Live Deeper</em></h1>
+    <p class="hero-subtitle">Curated journeys to the world's most extraordinary places. Discover, save, and relive your adventures.</p>
+    <div class="hero-actions">
+      <a href="explore.html" class="btn btn-primary">✦ Start Exploring</a>
+      <a href="guidebook.html" class="btn btn-ghost">Open Guidebook →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number">180+</div>
+        <div class="hero-stat-label">Countries</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">2.4K</div>
+        <div class="hero-stat-label">Destinations</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">98K</div>
+        <div class="hero-stat-label">Travellers</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>↓</span>
+    Scroll
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section class="search-section">
+  <div class="container">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search destinations, cities, countries...">
+      <div class="search-divider"></div>
+      <select class="search-select">
+        <option>All Categories</option>
+        <option>Beaches</option>
+        <option>Mountains</option>
+        <option>Cities</option>
+        <option>Culture</option>
+      </select>
+      <div class="search-divider"></div>
+      <select class="search-select">
+        <option>Any Region</option>
+        <option>Europe</option>
+        <option>Asia</option>
+        <option>Africa</option>
+        <option>Americas</option>
+      </select>
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED DESTINATIONS -->
+<section class="section" style="background: var(--cream)">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-row">
+        <div>
+          <p class="section-label reveal">✦ Featured Destinations</p>
+          <h2 class="section-title reveal reveal-delay-1">Places Worth<br>Every Journey</h2>
+        </div>
+        <a href="explore.html" class="view-all reveal">View all destinations →</a>
+      </div>
+    </div>
+    <div class="cards-grid" id="featured-grid"></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" style="background: var(--sand)">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label reveal">✦ Browse by Type</p>
+      <h2 class="section-title reveal reveal-delay-1">Find Your<br>Perfect Escape</h2>
+    </div>
+    <div class="categories-grid" id="categories-grid"></div>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section class="section" style="background:var(--cream)">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-row">
+        <div>
+          <p class="section-label reveal">✦ Trending Now</p>
+          <h2 class="section-title reveal reveal-delay-1">Top Picks<br>This Season</h2>
+        </div>
+        <a href="explore.html" class="view-all reveal">See more →</a>
+      </div>
+    </div>
+    <div class="trending-scroll" id="trending-scroll"></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="background: linear-gradient(135deg, #2d1f14 0%, #c1440e 100%); padding: 80px 0; text-align: center; color: #fff;">
+  <div class="container">
+    <p class="section-label" style="color:var(--gold)">✦ Start Your Journey</p>
+    <h2 class="section-title" style="color:#fff; margin-bottom:16px">Ready to Explore the World?</h2>
+    <p style="opacity:.8; max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem;">Join 98,000+ travellers discovering extraordinary destinations every day.</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="explore.html" class="btn btn-ghost">Browse Destinations</a>
+      <a href="auth.html" class="btn" style="background:#fff; color:var(--terracotta);">Create Free Account</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="navbar-logo" style="color:#fff; margin-bottom:16px">
+          <div class="logo-icon">✈</div>
+          Safar Mehfil
+        </div>
+        <p class="footer-desc">Curating the world's most extraordinary travel experiences since 2020. Your adventure starts here.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Explore</div>
+        <ul class="footer-links">
+          <li><a href="explore.html" class="footer-link">Destinations</a></li>
+          <li><a href="guidebook.html" class="footer-link">Guidebook</a></li>
+          <li><a href="memories.html" class="footer-link">Memories</a></li>
+          <li><a href="wishlist.html" class="footer-link">Wishlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Discover</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Beaches</a></li>
+          <li><a href="#" class="footer-link">Mountains</a></li>
+          <li><a href="#" class="footer-link">Cities</a></li>
+          <li><a href="#" class="footer-link">Culture</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">About Us</a></li>
+          <li><a href="#" class="footer-link">Blog</a></li>
+          <li><a href="#" class="footer-link">Privacy</a></li>
+          <li><a href="auth.html" class="footer-link">Sign In</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Safar Mehfil. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" class="footer-social-btn">𝕏</a>
+        <a href="#" class="footer-social-btn">f</a>
+        <a href="#" class="footer-social-btn">in</a>
+        <a href="#" class="footer-social-btn">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

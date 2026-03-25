@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Safar Mehfil</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--cream); }
+    .auth-page { min-height: 100vh; display: flex; }
+    .auth-left {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-left-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1000&q=80') center/cover no-repeat;
+    }
+    .auth-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,12,5,.88) 35%, rgba(20,12,5,.3));
+      padding: 48px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .auth-left-logo { display: flex; align-items: center; gap: 10px; color: #fff; font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+    .auth-left-content { color: #fff; }
+    .auth-left-title { font-family: var(--font-display); font-size: 3.2rem; font-weight: 900; line-height: 1.05; margin-bottom: 20px; }
+    .auth-left-title em { font-style: italic; color: var(--gold); }
+    .auth-left-subtitle { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 380px; line-height: 1.7; }
+    .auth-left-features { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+    .auth-feature { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.85); font-size: 14px; }
+    .auth-feature-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .auth-right {
+      width: 480px;
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--cream);
+      overflow-y: auto;
+    }
+    .back-link { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--warm-gray); margin-bottom: 48px; transition: color var(--transition); }
+    .back-link:hover { color: var(--terracotta); }
+    .auth-title { font-family: var(--font-display); font-size: 2.4rem; font-weight: 900; margin-bottom: 6px; color: var(--slate); }
+    .auth-subtitle { color: var(--warm-gray); margin-bottom: 36px; font-size: 15px; }
+    .auth-tabs { display: flex; background: var(--sand); border-radius: 50px; padding: 4px; margin-bottom: 36px; gap: 0; }
+    .auth-tab { flex: 1; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; color: var(--warm-gray); transition: all var(--transition); text-align: center; }
+    .auth-tab.active { background: var(--terracotta); color: #fff; box-shadow: 0 2px 8px rgba(193,68,14,.35); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .password-wrapper { position: relative; }
+    .password-toggle { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; cursor: pointer; color: var(--warm-gray); }
+    .remember-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--warm-gray); cursor: pointer; }
+    .checkbox-label input { accent-color: var(--terracotta); }
+    .forgot-link { font-size: 13px; color: var(--terracotta); font-weight: 500; }
+    .auth-submit { width: 100%; padding: 14px; background: var(--terracotta); color: #fff; border-radius: 50px; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; transition: all var(--transition); box-shadow: 0 4px 20px rgba(193,68,14,.35); }
+    .auth-submit:hover { background: var(--rust); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(193,68,14,.45); }
+    .auth-divider { text-align: center; color: var(--warm-gray); font-size: 13px; position: relative; margin: 24px 0; }
+    .auth-divider::before, .auth-divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: var(--light-gray); }
+    .auth-divider::before { left: 0; }
+    .auth-divider::after { right: 0; }
+    .social-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .social-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border: 1.5px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; color: var(--slate); transition: all var(--transition); background: var(--white); }
+    .social-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .auth-switch { text-align: center; font-size: 14px; color: var(--warm-gray); margin-top: 24px; }
+    .auth-switch a { color: var(--terracotta); font-weight: 600; }
+    @media (max-width: 1024px) { .auth-left { display: none; } .auth-right { width: 100%; } }
+    @media (max-width: 480px) { .auth-right { padding: 32px 24px; } .form-row { grid-template-columns: 1fr; } .auth-title { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+
+<div class="toast-container" id="toast-container"></div>
+
+<div class="auth-page">
+  <!-- Left visual -->
+  <div class="auth-left">
+    <div class="auth-left-bg"></div>
+    <div class="auth-left-overlay">
+      <div class="auth-left-logo">
+        <div class="logo-icon">✈</div>
+        Safar Mehfil
+      </div>
+      <div class="auth-left-content">
+        <h2 class="auth-left-title">Your World<br><em>Awaits You</em></h2>
+        <p class="auth-left-subtitle">Join 98,000+ travellers discovering, saving, and reliving the world's most extraordinary destinations.</p>
+        <div class="auth-left-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">🌍</div>
+            <span>Explore 2,400+ curated destinations worldwide</span>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">❤️</div>
+            <span>Save your dream destinations to a personal wishlist</span>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">📸</div>
+            <span>Capture and relive your travel memories forever</span>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">📖</div>
+            <span>Flip through our beautiful interactive guidebook</span>
+          </div>
+        </div>
+      </div>
+      <div style="color:rgba(255,255,255,.4);font-size:12px">
+        © 2025 Safar Mehfil. All rights reserved.
+      </div>
+    </div>
+  </div>
+
+  <!-- Right form -->
+  <div class="auth-right">
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="auth-title" id="auth-title">Welcome Back</div>
+    <div class="auth-subtitle" id="auth-subtitle">Sign in to continue your journey</div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" id="tab-login">Sign In</button>
+      <button class="auth-tab" data-tab="signup" id="tab-signup">Create Account</button>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-form active" id="form-login" style="display:flex; flex-direction:column; gap:18px">
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label" for="login-email">Email Address</label>
+        <input class="form-input" type="email" id="login-email" placeholder="hello@example.com">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label" for="login-password">Password</label>
+        <div class="password-wrapper">
+          <input class="form-input" type="password" id="login-password" placeholder="••••••••">
+          <span class="password-toggle" onclick="togglePass('login-password', this)">👁</span>
+        </div>
+      </div>
+      <div class="remember-row">
+        <label class="checkbox-label">
+          <input type="checkbox" checked>
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+      <button class="auth-submit" id="login-btn">Sign In →</button>
+
+      <div class="auth-divider">or continue with</div>
+      <div class="social-btns">
+        <button class="social-btn">🌐 Google</button>
+        <button class="social-btn">🍎 Apple</button>
+      </div>
+      <div class="auth-switch">
+        Don't have an account? <a href="#" onclick="switchTab('signup')">Sign up free</a>
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="auth-form" id="form-signup" style="display:none; flex-direction:column; gap:18px">
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="signup-first">First Name</label>
+          <input class="form-input" type="text" id="signup-first" placeholder="Jane">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" for="signup-last">Last Name</label>
+          <input class="form-input" type="text" id="signup-last" placeholder="Doe">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label" for="signup-email">Email Address</label>
+        <input class="form-input" type="email" id="signup-email" placeholder="hello@example.com">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label" for="signup-password">Password</label>
+        <div class="password-wrapper">
+          <input class="form-input" type="password" id="signup-password" placeholder="Min. 8 characters">
+          <span class="password-toggle" onclick="togglePass('signup-password', this)">👁</span>
+        </div>
+      </div>
+      <label class="checkbox-label">
+        <input type="checkbox">
+        I agree to the <a href="#" style="color:var(--terracotta)">Terms of Service</a> and <a href="#" style="color:var(--terracotta)">Privacy Policy</a>
+      </label>
+      <button class="auth-submit" id="signup-btn">Create Account →</button>
+
+      <div class="auth-divider">or sign up with</div>
+      <div class="social-btns">
+        <button class="social-btn">🌐 Google</button>
+        <button class="social-btn">🍎 Apple</button>
+      </div>
+      <div class="auth-switch">
+        Already have an account? <a href="#" onclick="switchTab('login')">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  function switchTab(tab) {
+    const tabs = document.querySelectorAll('.auth-tab');
+    const forms = { login: document.getElementById('form-login'), signup: document.getElementById('form-signup') };
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    Object.entries(forms).forEach(([k, f]) => { f.style.display = k === tab ? 'flex' : 'none'; });
+    document.getElementById('auth-title').textContent = tab === 'login' ? 'Welcome Back' : 'Join the Journey';
+    document.getElementById('auth-subtitle').textContent = tab === 'login' ? 'Sign in to continue your journey' : 'Create your free account today';
+  }
+
+  document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  });
+
+  function togglePass(id, icon) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') { input.type = 'text'; icon.textContent = '🙈'; }
+    else { input.type = 'password'; icon.textContent = '👁'; }
+  }
+
+  // Apply dark mode to navbar in auth
+  const navbarEl = document.getElementById('navbar');
+  if (navbarEl) navbarEl.style.display = 'none';
+</script>
+</body>
+</html>

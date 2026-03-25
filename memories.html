@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Memories — Safar Mehfil</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .memories-bg-pattern {
+      background-color: var(--sand);
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9963b' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .stats-bar {
+      background: #1a1208;
+      padding: 28px 0;
+    }
+    .stats-row {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; color: #fff; }
+    .stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--gold); }
+    .stat-label { font-size: 12px; opacity: 0.6; letter-spacing: 1px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar" style="background:#1a1208; border-bottom:1px solid rgba(255,255,255,.08)">
+  <a href="index.html" class="navbar-logo" style="color:#fff">
+    <div class="logo-icon">✈</div>
+    Safar Mehfil
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link" style="color:rgba(255,255,255,.7)">Home</a></li>
+    <li><a href="explore.html" class="nav-link" style="color:rgba(255,255,255,.7)">Explore</a></li>
+    <li><a href="guidebook.html" class="nav-link" style="color:rgba(255,255,255,.7)">Guidebook</a></li>
+    <li><a href="memories.html" class="nav-link active" style="color:#fff">Memories</a></li>
+    <li><a href="wishlist.html" class="nav-link" style="color:rgba(255,255,255,.7)">Wishlist</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode" style="background:rgba(255,255,255,.1);color:#fff">🌙</button>
+    <a href="auth.html" class="nav-btn-login">Login / Sign Up</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span style="background:#fff"></span>
+    <span style="background:#fff"></span>
+    <span style="background:#fff"></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="explore.html" class="mobile-nav-link">Explore</a>
+  <a href="guidebook.html" class="mobile-nav-link">Guidebook</a>
+  <a href="memories.html" class="mobile-nav-link">Memories</a>
+  <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+  <div class="mobile-nav-actions">
+    <a href="auth.html" class="btn btn-primary" style="justify-content:center">Login / Sign Up</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="memories-header">
+  <div class="container">
+    <p class="section-label">✦ Your Journey</p>
+    <h1 class="section-title" style="color:#fff; margin-bottom:16px">My Travel<br><em style="font-style:italic;color:var(--gold)">Memories</em></h1>
+    <p style="color:rgba(255,255,255,.6); max-width:440px; margin:0 auto; font-size:1.05rem">
+      Every journey tells a story. Collect your moments, one memory at a time.
+    </p>
+  </div>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number" id="stat-memories">0</div>
+        <div class="stat-label">Memories Saved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat-visited">0</div>
+        <div class="stat-label">Places Visited</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat-wish">0</div>
+        <div class="stat-label">On Wishlist</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Memories Section -->
+<section class="memories-section memories-bg-pattern">
+  <div class="container">
+
+    <!-- Empty state -->
+    <div id="memories-empty" style="text-align:center;padding:100px 24px;display:none">
+      <div style="font-size:64px;margin-bottom:20px">📷</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--slate);margin-bottom:12px">No memories yet</div>
+      <p style="color:var(--warm-gray);margin-bottom:32px">Start capturing your travel memories by clicking the + button below.</p>
+      <button onclick="document.getElementById('memory-modal').classList.add('open')" class="btn btn-primary">✦ Add First Memory</button>
+    </div>
+
+    <!-- Masonry grid -->
+    <div class="memories-masonry" id="memories-masonry"></div>
+
+  </div>
+</section>
+
+<!-- FAB -->
+<button class="add-memory-btn-fab" id="add-memory-fab" title="Add new memory">+</button>
+
+<!-- Add Memory Modal -->
+<div class="modal-overlay" id="memory-modal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" id="modal-close" title="Close">✕</button>
+    <div class="modal-title">Add a Memory 📸</div>
+    <form id="memory-form">
+      <div class="form-group">
+        <label class="form-label" for="m-place">Destination Name</label>
+        <input class="form-input" type="text" id="m-place" placeholder="e.g. Santorini" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="m-location">Location</label>
+        <input class="form-input" type="text" id="m-location" placeholder="e.g. Thira, Greece" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="m-date">Date Visited</label>
+        <input class="form-input" type="date" id="m-date" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Upload Photo</label>
+        <label class="file-upload" for="memory-image">
+          <div class="file-upload-icon">🖼️</div>
+          <div class="file-upload-text" id="file-label">Click to upload photo</div>
+          <div style="font-size:12px;color:var(--warm-gray);margin-top:4px">PNG, JPG, WEBP up to 5MB</div>
+          <input type="file" id="memory-image" accept="image/*">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="m-note">Note (optional)</label>
+        <textarea class="form-input form-textarea" id="m-note" placeholder="What made this trip special?"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="modal-cancel" style="flex:1;justify-content:center">Cancel</button>
+        <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center">Save Memory ✦</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer" style="margin-top:0">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0">
+      <span style="color:rgba(255,255,255,.5)">© 2025 Safar Mehfil</span>
+      <div style="display:flex;gap:24px">
+        <a href="explore.html" class="footer-link">Explore</a>
+        <a href="guidebook.html" class="footer-link">Guidebook</a>
+        <a href="wishlist.html" class="footer-link">Wishlist</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Stats
+    const sm = document.getElementById('stat-memories');
+    const sv = document.getElementById('stat-visited');
+    const sw = document.getElementById('stat-wish');
+    if (sm) sm.textContent = memories.length;
+    if (sv) sv.textContent = visited.length;
+    if (sw) sw.textContent = wishlist.length;
+    // Cancel button
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (cancelBtn) cancelBtn.addEventListener('click', () => document.getElementById('memory-modal').classList.remove('open'));
+  });
+</script>
+</body>
+</html>

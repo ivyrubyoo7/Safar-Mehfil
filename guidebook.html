@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guidebook — Safar Mehfil</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Extra guidebook atmosphere */
+    body { background: var(--sand); }
+    .guidebook-intro {
+      text-align: center;
+      padding: 20px 0 0;
+      color: rgba(255,255,255,.6);
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .book-wrapper {
+      perspective: 1800px;
+    }
+    .book-page-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='0.5' fill='rgba(0,0,0,0.03)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .toc-section {
+      background: var(--cream);
+      padding: 60px 0;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--light-gray);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .toc-item:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .toc-num { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; color: var(--terracotta); min-width: 24px; }
+  </style>
+</head>
+<body>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar" style="background: #2d1f14; border-bottom: 1px solid rgba(255,255,255,.1)">
+  <a href="index.html" class="navbar-logo" style="color:#fff">
+    <div class="logo-icon">✈</div>
+    Safar Mehfil
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link" style="color:rgba(255,255,255,.7)">Home</a></li>
+    <li><a href="explore.html" class="nav-link" style="color:rgba(255,255,255,.7)">Explore</a></li>
+    <li><a href="guidebook.html" class="nav-link active" style="color:#fff">Guidebook</a></li>
+    <li><a href="memories.html" class="nav-link" style="color:rgba(255,255,255,.7)">Memories</a></li>
+    <li><a href="wishlist.html" class="nav-link" style="color:rgba(255,255,255,.7)">Wishlist</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode" style="background: rgba(255,255,255,.1); color:#fff">🌙</button>
+    <a href="auth.html" class="nav-btn-login">Login / Sign Up</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span style="background:#fff"></span><span style="background:#fff"></span><span style="background:#fff"></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="explore.html" class="mobile-nav-link">Explore</a>
+  <a href="guidebook.html" class="mobile-nav-link">Guidebook</a>
+  <a href="memories.html" class="mobile-nav-link">Memories</a>
+  <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+  <div class="mobile-nav-actions">
+    <a href="auth.html" class="btn btn-primary" style="justify-content:center">Login / Sign Up</a>
+  </div>
+</div>
+
+<!-- Guidebook Header -->
+<div class="guidebook-header">
+  <div class="container">
+    <p class="section-label">✦ The Travel Guidebook</p>
+    <h1 class="section-title" style="color:#fff; margin-bottom: 16px">Stories From<br><em style="font-style:italic; color:var(--gold)">Around the World</em></h1>
+    <p class="guidebook-intro">A curated compendium of the world's most extraordinary destinations</p>
+  </div>
+</div>
+
+<!-- Book -->
+<div class="book-container">
+  <div class="book book-wrapper">
+    <div class="book-page left" id="book-left">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="book-spine"></div>
+    <div class="book-page right" id="book-right">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- Book Navigation -->
+<div class="book-nav">
+  <button class="book-nav-btn" id="book-prev" disabled>← Previous</button>
+  <div class="book-progress" id="book-progress">1 / 12</div>
+  <button class="book-nav-btn" id="book-next">Next →</button>
+</div>
+
+<!-- Table of Contents -->
+<section class="toc-section">
+  <div class="container">
+    <p class="section-label">✦ Contents</p>
+    <h2 class="section-title" style="margin-bottom:8px">Jump to Destination</h2>
+    <p style="color:var(--warm-gray)">Click any destination to navigate directly to that page.</p>
+    <div class="toc-grid" id="toc-grid"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0">
+      <span style="color:rgba(255,255,255,.5)">© 2025 Safar Mehfil</span>
+      <div style="display:flex;gap:24px">
+        <a href="explore.html" class="footer-link">Explore</a>
+        <a href="wishlist.html" class="footer-link">Wishlist</a>
+        <a href="memories.html" class="footer-link">Memories</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Table of contents - runs after destinations load
+  document.addEventListener('DOMContentLoaded', () => {
+    const toc = document.getElementById('toc-grid');
+    if (toc && typeof destinations !== 'undefined') {
+      toc.innerHTML = destinations.map((d, i) => `
+        <div class="toc-item" onclick="jumpToPage(${i})">
+          <span class="toc-num">${String(i+1).padStart(2,'0')}</span>
+          <div>
+            <div style="font-weight:600">${d.name}</div>
+            <div style="font-size:12px;color:var(--warm-gray)">${d.country}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  });
+
+  function jumpToPage(index) {
+    guidebookPage = index;
+    // Re-render pages
+    const leftPage  = document.getElementById('book-left');
+    const rightPage = document.getElementById('book-right');
+    const prevBtn   = document.getElementById('book-prev');
+    const nextBtn   = document.getElementById('book-next');
+    const progressEl = document.getElementById('book-progress');
+    if (!leftPage) return;
+    const dest = destinations[guidebookPage];
+    const next = destinations[guidebookPage + 1];
+    leftPage.classList.add('flipping');
+    rightPage.classList.add('flipping');
+    setTimeout(() => {
+      leftPage.innerHTML = `
+        <div class="book-page-label">✦ The Guidebook</div>
+        <div class="book-destination-name">${dest.name}</div>
+        <div class="book-location">📍 ${dest.city} · ${dest.country} · ${dest.region}</div>
+        <div class="book-divider"></div>
+        <div class="book-description">${dest.description}</div>
+        <div class="book-tags">${dest.category.map(c=>`<span class="tag tag-terracotta">${c}</span>`).join('')}</div>
+        <div class="book-spots-title">Best Places to Visit</div>
+        <div class="book-spots-list">${dest.spots.map(s=>`<div class="book-spot">${s}</div>`).join('')}</div>
+        <div class="book-page-number">— ${guidebookPage*2+1} —</div>`;
+      rightPage.innerHTML = `
+        <div class="book-image"><img src="${dest.image.replace('w=600','w=800')}" alt="${dest.name}" loading="lazy"></div>
+        <div class="book-page-label">☆ Rating: ${'★'.repeat(Math.floor(dest.rating))} ${dest.rating}</div>
+        <div class="book-location">${dest.reviews.toLocaleString()} traveller reviews</div>
+        <div style="margin-top:16px;font-family:var(--font-accent);font-style:italic;color:var(--warm-gray);font-size:.95rem;line-height:1.7">"${dest.spots[0]}, ${dest.spots[1]} — the highlights of any visit to ${dest.name}."</div>
+        ${next?`<div style="margin-top:24px;padding:16px;background:var(--sand);border-radius:var(--radius-sm)"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);font-weight:700;margin-bottom:6px">Next Destination</div><div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700">${next.name}</div><div style="font-size:12px;color:var(--warm-gray)">${next.country}</div></div>`:''}
+        <div class="book-page-number">— ${guidebookPage*2+2} —</div>`;
+      leftPage.classList.remove('flipping');
+      rightPage.classList.remove('flipping');
+    }, 350);
+    if (prevBtn) prevBtn.disabled = guidebookPage === 0;
+    if (nextBtn) nextBtn.disabled = guidebookPage >= destinations.length - 1;
+    if (progressEl) progressEl.textContent = `${guidebookPage+1} / ${destinations.length}`;
+    window.scrollTo({ top: document.querySelector('.book-container').offsetTop - 80, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

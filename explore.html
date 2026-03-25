@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Destinations — Safar Mehfil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="toast-container" id="toast-container"></div>
+
+<div class="progress-tracker" id="progress-tracker">
+  <div class="progress-tracker-title">Places Visited</div>
+  <div class="progress-tracker-count">0</div>
+  <div class="progress-tracker-label">of 12 destinations</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <div class="logo-icon">✈</div>
+    Safar Mehfil
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link">Home</a></li>
+    <li><a href="explore.html" class="nav-link active">Explore</a></li>
+    <li><a href="guidebook.html" class="nav-link">Guidebook</a></li>
+    <li><a href="memories.html" class="nav-link">Memories</a></li>
+    <li><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode">🌙</button>
+    <a href="auth.html" class="nav-btn-login">Login / Sign Up</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="explore.html" class="mobile-nav-link">Explore</a>
+  <a href="guidebook.html" class="mobile-nav-link">Guidebook</a>
+  <a href="memories.html" class="mobile-nav-link">Memories</a>
+  <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+  <div class="mobile-nav-actions">
+    <a href="auth.html" class="btn btn-primary" style="justify-content:center">Login / Sign Up</a>
+  </div>
+</div>
+
+<!-- Page Header -->
+<div class="explore-header">
+  <div class="container">
+    <p class="section-label">✦ All Destinations</p>
+    <h1 class="section-title" style="margin-bottom:20px">Explore the World</h1>
+    <p style="color:var(--warm-gray); max-width:480px; margin:0 auto 32px; font-size:1.05rem;">
+      Discover hand-picked destinations across every corner of the globe. Filter by category, region, or search by name.
+    </p>
+    <!-- Search -->
+    <div class="search-bar" style="max-width:560px">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="explore-search" placeholder="Search destinations, cities, countries...">
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="container">
+  <div class="filter-bar">
+    <button class="filter-chip active" data-filter="All">All</button>
+    <button class="filter-chip" data-filter="Beaches">🏖 Beaches</button>
+    <button class="filter-chip" data-filter="Mountains">⛰ Mountains</button>
+    <button class="filter-chip" data-filter="Cities">🏙 Cities</button>
+    <button class="filter-chip" data-filter="Culture">🏛 Culture</button>
+    <button class="filter-chip" data-filter="Nature">🌿 Nature</button>
+    <button class="filter-chip" data-filter="Adventure">🧗 Adventure</button>
+    <button class="filter-chip" data-filter="Europe">🌍 Europe</button>
+    <button class="filter-chip" data-filter="Asia">🌏 Asia</button>
+    <button class="filter-chip" data-filter="Africa">🌍 Africa</button>
+    <button class="filter-chip" data-filter="South America">🌎 S. America</button>
+    <span class="results-count" id="results-count">12 destinations found</span>
+  </div>
+
+  <!-- Grid -->
+  <div class="explore-grid" id="explore-grid" style="margin-bottom: 80px;"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0">
+      <span style="color:rgba(255,255,255,.5)">© 2025 Safar Mehfil</span>
+      <div style="display:flex;gap:24px">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="wishlist.html" class="footer-link">Wishlist</a>
+        <a href="memories.html" class="footer-link">Memories</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
