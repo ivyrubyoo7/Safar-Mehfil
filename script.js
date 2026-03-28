@@ -10,7 +10,7 @@ const destinations = [
     city: "Thira", country: "Greece", region: "Europe",
     category: ["Beaches", "Islands", "Culture"],
     rating: 4.9, reviews: 2841,
-    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80",
+    image: "images/santorini2.jpg",
     description: "Perched on volcanic cliffs, Santorini is an island of extraordinary beauty—white-washed cube-houses, blue-domed churches and sunsets that turn the Aegean gold.",
     spots: ["Oia Sunset Point", "Red Beach", "Akrotiri Archaeological Site", "Caldera Views", "Amoudi Bay"],
     badge: "Trending"
@@ -21,7 +21,7 @@ const destinations = [
     city: "Kyoto", country: "Japan", region: "Asia",
     category: ["Culture", "Cities", "Nature"],
     rating: 4.8, reviews: 3204,
-    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80",
+    image: "images/kyoto2.webp",
     description: "Japan's ancient capital where geisha glide down cobbled alleys, a thousand torii gates march up forested hillsides, and every season paints the city in new colors.",
     spots: ["Fushimi Inari Shrine", "Arashiyama Bamboo Grove", "Kinkaku-ji (Golden Pavilion)", "Gion District", "Nishiki Market"],
     badge: "Popular"
@@ -32,7 +32,7 @@ const destinations = [
     city: "Torres del Paine", country: "Chile", region: "South America",
     category: ["Mountains", "Nature", "Adventure"],
     rating: 4.9, reviews: 1562,
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80",
+    image: "images/patagonia1.jpg",
     description: "A wild, windswept wilderness at the end of the world—jagged granite towers, turquoise lakes, calving glaciers, and pumas moving silently through golden grasslands.",
     spots: ["Torres del Paine", "Grey Glacier", "Valle del Francés", "Mirador Las Torres", "Lago Pehoé"],
     badge: "Wild"
@@ -43,7 +43,7 @@ const destinations = [
     city: "Marrakech", country: "Morocco", region: "Africa",
     category: ["Culture", "Cities", "Food"],
     rating: 4.7, reviews: 2109,
-    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80",
+    image: "images/marrakech1.jpg",
     description: "A city of sensory overload—labyrinthine medinas perfumed with spices, ornate riads hiding lush gardens, and a Djemaa el-Fna that never sleeps.",
     spots: ["Djemaa el-Fna Square", "Majorelle Garden", "Ben Youssef Madrasa", "Bahia Palace", "Souks of Marrakech"],
     badge: ""
@@ -54,7 +54,7 @@ const destinations = [
     city: "Ubud", country: "Indonesia", region: "Asia",
     category: ["Beaches", "Culture", "Nature"],
     rating: 4.8, reviews: 4520,
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+    image: "images/bali1.jpg",
     description: "The Island of the Gods blends Hindu temples, terraced rice paddies, ancient ceremonies, and dreamy coastal retreats into an endlessly photogenic whole.",
     spots: ["Tegallalang Rice Terraces", "Uluwatu Temple", "Monkey Forest", "Tanah Lot", "Seminyak Beach"],
     badge: "Popular"
@@ -65,7 +65,7 @@ const destinations = [
     city: "Reykjavik", country: "Iceland", region: "Europe",
     category: ["Nature", "Adventure", "Mountains"],
     rating: 4.9, reviews: 1893,
-    image: "https://images.unsplash.com/photo-1520769945061-0a448c463865?w=600&q=80",
+    image: "images/iceland2.webp",
     description: "Waterfalls plunging into basalt canyons, geysers punching skyward, and on clear winter nights the aurora borealis turns the whole sky into a living painting.",
     spots: ["Northern Lights Viewing", "Golden Circle", "Blue Lagoon", "Jökulsárlón Glacier Lagoon", "Skógafoss Waterfall"],
     badge: "Magical"
@@ -76,7 +76,7 @@ const destinations = [
     city: "Positano", country: "Italy", region: "Europe",
     category: ["Beaches", "Culture", "Cities"],
     rating: 4.8, reviews: 2670,
-    image: "https://images.unsplash.com/photo-1612698093158-e07ac200d44e?w=600&q=80",
+    image: "images/amalficoast2.jpg",
     description: "Stacked pastel villages tumble down limestone cliffs straight into the cerulean sea. Lemon groves, fresh limoncello, and some of Italy's most dramatic views.",
     spots: ["Positano Village", "Path of the Gods", "Ravello Gardens", "Emerald Grotto", "Marina di Praia"],
     badge: ""
@@ -87,7 +87,7 @@ const destinations = [
     city: "Cusco", country: "Peru", region: "South America",
     category: ["Culture", "Mountains", "Adventure"],
     rating: 4.9, reviews: 3812,
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=600&q=80",
+    image: "images/machupicchu2.jpg",
     description: "The Lost City of the Incas hovers in the clouds above the Sacred Valley—a masterpiece of engineering so perfectly integrated with its mountain setting it seems to grow from the rock.",
     spots: ["Sun Gate (Inti Punku)", "Huayna Picchu", "Temple of the Sun", "Intihuatana Stone", "Agricultural Terraces"],
     badge: "UNESCO"
@@ -98,7 +98,7 @@ const destinations = [
     city: "Malé", country: "Maldives", region: "Asia",
     category: ["Beaches", "Islands", "Luxury"],
     rating: 5.0, reviews: 1204,
-    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80",
+    image: "images/maldives1.webp",
     description: "A necklace of coral atolls scattered across the Indian Ocean—overwater bungalows, bioluminescent plankton beaches, and the world's most extraordinary snorkeling.",
     spots: ["Baa Atoll UNESCO Biosphere", "Hanifaru Bay", "Overwater Bungalow Sunrise", "Whale Shark Snorkeling", "Vaadhoo Island Beach"],
     badge: "Luxury"
@@ -109,7 +109,7 @@ const destinations = [
     city: "Dubrovnik", country: "Croatia", region: "Europe",
     category: ["Culture", "Cities", "Beaches"],
     rating: 4.7, reviews: 2231,
-    image: "https://images.unsplash.com/photo-1555990793-da11153b2473?w=600&q=80",
+    image: "images/dubrovnik1.jpg",
     description: "The Pearl of the Adriatic—massive medieval city walls encircle terracotta rooftops, baroque churches and marble streets that glow amber in the evening light.",
     spots: ["Old City Walls Walk", "Lokrum Island", "Cable Car Summit", "Stradun Promenade", "Fort Lovrijenac"],
     badge: ""
@@ -120,18 +120,18 @@ const destinations = [
     city: "Arusha", country: "Tanzania", region: "Africa",
     category: ["Nature", "Adventure", "Wildlife"],
     rating: 4.9, reviews: 987,
-    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80",
+    image: "images/serengeti2.jpg",
     description: "The most spectacular wildlife show on Earth—two million wildebeest, zebra and gazelle streaming across golden savanna in an unbroken circle of life.",
     spots: ["Great Migration Crossing", "Ngorongoro Crater", "Balloon Safari", "Seronera Valley", "Mara River Crossing"],
     badge: "Wild"
   },
   {
     id: 12,
-    name: "New Zealand",
+    name: "images/New Zealand",
     city: "Queenstown", country: "New Zealand", region: "Oceania",
     category: ["Adventure", "Mountains", "Nature"],
     rating: 4.8, reviews: 1647,
-    image: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=600&q=80",
+    image: "images/newzealand3.avif",
     description: "Middle-earth made real—fiords carved by glaciers, mountains reflected in mirror lakes, and an adventure culture that invented bungee jumping for good reason.",
     spots: ["Milford Sound", "Tongariro Alpine Crossing", "Franz Josef Glacier", "Hobbiton Movie Set", "Queenstown Gondola"],
     badge: "Adventure"
