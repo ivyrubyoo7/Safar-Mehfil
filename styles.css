@@ -282,15 +282,50 @@ input, textarea, select { font-family: var(--font-body); }
   align-items: center;
   overflow: hidden;
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+
+/* Ensure the sections are completely transparent so the single background shows through */
+/* ============================================================
+   HERO / LONG SCROLL SECTION
+   ============================================================ */
+.long-scroll-container {
+  width: 100%;
+  /* Double check this path! */
+  background-image: url('images/forestwhorseupscaled.jpg');
+  background-size: 100% 100%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-color: #1a1a1a;
 }
+/* 2. Mobile View (Tall Image) */
+@media (max-width: 768px) {
+  .long-scroll-container {
+    background-image: url('images/forestwhorseupscaled.jpg'); /* Your beautiful tall image goes here! */
+    background-size: cover; 
+    background-attachment: scroll; /* Mobile doesn't always handle 'fixed' well, so we scroll normally */
+  }
+}
+.scroll-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; 
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(20,15,10,.72) 0%, rgba(45,30,20,.35) 60%, rgba(15,10,5,.5) 100%);
+  /* Dark tint so the text is readable over the bright image */
+  background: linear-gradient(135deg, rgba(20,15,10,.4) 0%, rgba(45,30,20,.2) 60%, rgba(15,10,5,.3) 100%);    
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 .hero-content {
   position: relative;
